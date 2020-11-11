@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/@coreui/coreui/dist/css/coreui.min.css">
+    <script src="https://kit.fontawesome.com/fb8a4c26a7.js" crossorigin="anonymous"></script>
+
+    <style>
+        html,
+        body {
+            background-image: url('https://image.shutterstock.com/image-vector/abstract-particle-background-mess-network-600w-1663394287.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+    <body class="c-app flex-row align-items-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-9">
+                    <div class="card-group">
+                        <div class="card p-4">
+                            <form action="dashboard.html">
+                                <div class="card-body">
+                                    <h1 style="text-align: center;">Login</h1>
+                                    <p class="text-muted" style="text-align: center;">Sign In to your account</p>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend"><span class="input-group-text">
+                                            <i class="fas fa-user"></i></span></div>
+                                        <input type="email" name="email" required #email="ngModel" [(ngModel)]="user.email" class="form-control" id="inputEmail3" placeholder="Email">
+                                    </div>
+                                    <div class="input-group mb-4">
+                                        <div class="input-group-prepend"><span class="input-group-text">
+                                            <i class="fas fa-key"></i></span></div>
+                                        <input type="password" name="password" required #password="ngModel" [(ngModel)]="user.password" class="form-control" id="inputPassword3" placeholder="Password">
+                                    </div>
+                                    <div class="">
+                                        <div class="">
+                                            <button class="btn-lg btn-block btn-info px-4" (click)="login()" type="submit">Login</button>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <button class="btn btn-link px-0" type="button">Forgot Password?</button>
+                                            </div>
+                                            <div class="col-6">
+                                                <button class="btn btn-link px-0" (click)="Signup()" type="button">Sign Up?</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card text-white bg-info">
+                            <div class="card-body text-center">
+                                <div>
+                                    <p style="font-size: 35px; font-weight: bolder;" class="text-center">Welcome to S3 Infosoft!!!
+                                    </p>
+                                    <br>
+                                    <h4>Sign In</h4>
+                                    <br>
+                                    <p>This is a Test Login page.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</body>
