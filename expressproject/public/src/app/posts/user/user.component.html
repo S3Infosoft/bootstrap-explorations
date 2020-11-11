@@ -1,0 +1,99 @@
+<head>
+    <base href="./">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
+    <meta name="author" content="Łukasz Holeczek">
+    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
+    <title>CoreUI Pro Bootstrap Admin Template</title>
+    <script src="https://kit.fontawesome.com/yourcode.js"></script>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-118965717-1');
+    </script>
+</head>
+<section>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Hello!</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/posts/home">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/posts/posts">posts</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            More
+                          </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="myprogress">My-Progress</a>
+                        <a class="dropdown-item" href="addnew">Add-New</a>
+                        <a class="dropdown-item" href="discover">Discover</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="navbar-right">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="" class="nav-link" (click)="onlogout()" data-toggle="modal" data-target="#modalRForm">
+                        logout</a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+</section>
+<router-outlet></router-outlet>
+
+<body class="c-app">
+
+    <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
+        <div class="c-sidebar-brand d-md-down-none">
+            <i class="material-icons">business</i>
+        </div>
+        <ul class="c-sidebar-nav">
+            <li class="c-sidebar-nav-item">
+                <a class="c-sidebar-nav-link" href="/posts">
+                    <i class="material-icons">dashboard</i> Dashboard<span class="badge badge-info">NEW</span></a>
+            </li>
+
+            <li class="c-sidebar-nav-item">
+                <a class="c-sidebar-nav-link" href="">
+                    <i class="material-icons">chevron_right</i> CSM</a>
+            </li>
+            <li class="c-sidebar-nav-item">
+                <a class="c-sidebar-nav-link" href="">
+                    <i class="material-icons">chevron_right</i> CMOV</a>
+            </li>
+
+            <li class="c-sidebar-nav-dropdown">
+                <a class="c-sidebar-nav-link" href="#">
+                    <i class="material-icons">chevron_right</i> Subscription</a>
+            </li>
+            <li class="c-sidebar-nav-item">
+                <a class="c-sidebar-nav-link" href="">
+                    <i class="material-icons">chevron_right</i> Projects</a>
+            </li>
+
+
+        </ul>
+
+    </div>
+
+</body>
