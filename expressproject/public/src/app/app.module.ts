@@ -14,8 +14,8 @@ import { MatProgressSpinnerModule} from "@angular/material/progress-spinner"
 import { AuthGuard } from "./auth.guard";
 import { PagenotfoundComponent } from './auth/pagenotfound/pagenotfound.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
-
-
+import { FlashmessageComponent } from './shared/flashmessage/flashmessage.component';
+// import { ToolDeleteModalComponent } from './shared/tool-modal/tool-modal.component'
 
 @NgModule({
   declarations: [
@@ -24,8 +24,11 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
     SignupComponent,
     PagenotfoundComponent,
     SpinnerComponent,
-  
+    FlashmessageComponent,
+    // ToolDeleteModalComponent
   ],
+
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -33,7 +36,8 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
     HttpClientModule,
     MatPaginatorModule,
     BrowserAnimationsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    
   ],
 
   providers: [ AuthGuard ,{ provide : HTTP_INTERCEPTORS , useClass : AuthInterceptor , multi : true}],

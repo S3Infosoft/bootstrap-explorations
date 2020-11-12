@@ -82,17 +82,23 @@ export class PostsComponent implements OnInit {
     this.getApiData();
   }
 
-  onChanepage( pageData : PageEvent){
-
-  }
 
   onCancel(){
-    this.enteredValue={}
+    this.enteredValue = {}
   }
 
 
   onlogout(){
 this.auth.logout()
+  }
+
+
+  editPurity(i){
+    this.enteredValue = JSON.parse(JSON.stringify(this.postArray[i]))
+  }
+
+  deletePurity(i){
+    
   }
 }
 

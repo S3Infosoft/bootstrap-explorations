@@ -1,0 +1,18 @@
+.alertMsg{ position: fixed; top: 40px;
+left: 50%;
+transform: translateX(-50%);
+width: 90%; 
+padding: 15px 25px; 
+max-width: 400px;
+min-height: 60px;
+border-radius: 8px;
+z-index: 99;
+box-shadow:
+0 0 4px rgba(0,0,0,0.2)
+}
+.alertMsg p{ color: #fff; margin: 0 }
+.alert-success{ background: rgb(69, 157, 18); }
+.alert-warning{ background:#b8b801; }
+.alert-error{ background: rgb(213, 43, 13); }
+.alert-info{ background: #12b8eb; }
+.close-alert{ position: absolute; top: 20px; right: 24px; color: #fff; opacity: 0.5 }
