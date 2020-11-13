@@ -61,13 +61,14 @@ app.get(['/home', '/posts', '/', '/login', '/signup', '/home/*', '/posts/*'], fu
 app.use('/', indexRouter);
 app.use('/users/', usersRouter);
 
-app.post("/api/postData", checkAuth, (req, res, next) => {
+app.post("/api/postData", (req, res, next) => {
+
     const post = new Post({
         userName: req.body.userName,
         userCountry: req.body.userCountry,
         userModeOfPay: req.body.userModeOfPay,
-        creator: req.userData.userId,
-        creatorName: req.userData.email
+        // creator: req.userData.userId,
+        // creatorName: req.userData.email
     });
     post.save();
     res.status(201).json({
@@ -75,11 +76,11 @@ app.post("/api/postData", checkAuth, (req, res, next) => {
     })
 });
 
-app.post("/api/notifyData", checkAuth, (req, res, next) => {
+app.post("/api/notifyData", (req, res, next) => {
     const post = new Notify({
         message: req.body.message,
-        creator: req.userData.userId,
-        creatorName: req.userData.email
+        // creator: req.userData.userId,
+        // creatorName: req.userData.email
     });
     post.save();
     res.status(201).json({
@@ -107,15 +108,14 @@ app.get("/api/getData", (request, response) => {
     app.get("/api/getNotify", (request, response) => {
         const postQuery = Notify.find();
         postQuery.then(documents => {
-
             response.status(201).json({
                 message: documents,
             })
         });
     }),
 
-    app.delete("/api/deleteData/:id", checkAuth, (req, res, next) => {
-        Post.deleteOne({ _id: req.params.id, creator: req.userData.userId }).then(result => {
+    app.delete("/api/deleteData/:id", (req, res, next) => {
+        Post.deleteOne({ _id: req.params.id }).then(result => {
             if (result.n > 0) {
                 res.status(200).json({ message: 'post deleted' })
             } else

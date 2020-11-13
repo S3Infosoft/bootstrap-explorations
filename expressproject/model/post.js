@@ -8,9 +8,9 @@ const postSchema = mongoose.Schema({
 
     userModeOfPay: { type: String, required: true },
 
-    creator: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+    // creator: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true, default: "123" },
 
-    creatorName: { type: mongoose.Schema.Types.String, ref: "User", required: true },
+    // creatorName: { type: mongoose.Schema.Types.String, ref: "User", required: true, default: "ann" },
 
 });
 

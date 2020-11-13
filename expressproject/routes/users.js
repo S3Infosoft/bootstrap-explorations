@@ -14,6 +14,7 @@ router.post('/signup', (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
             const user = new User({
+                name: req.body.name,
                 email: req.body.email,
                 password: hash,
                 role: req.body.role
@@ -74,8 +75,37 @@ router.post('/login', (req, res, next) => {
 })
 
 
+router.get("/getUsers", (request, response) => {
+        const postQuery = User.find();
+        postQuery.then(documents => {
 
+            response.status(201).json({
+                message: documents,
+            })
+        });
+    }),
 
+    router.delete("/deleteUser/:id", (req, res, next) => {
+        User.deleteOne({ _id: req.params.id }).then(result => {
+            if (result.n > 0) {
+                res.status(200).json({ message: 'post deleted' })
+            } else
+                res.status(401).json({ message: 'Un Authorised' })
+        })
 
+    });
+
+router.put("/updateUser/:id", (req, res, next) => {
+    console.log("update")
+    const post = new User({
+        name: req.body.name,
+        email: req.body.email,
+        role: req.body.role
+    });
+    post.updateOne({ _id: req.params.id }, { upsert: true }, { multi: true });
+    res.status(201).json({
+        message: post,
+    })
+});
 
 module.exports = router;
