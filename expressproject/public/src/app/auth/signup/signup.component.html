@@ -33,7 +33,12 @@
                                 <div class="card-body">
                                     <h1 style="text-align: center;">Sign Up</h1>
                                     <p class="text-muted" style="text-align: center;">Create your account</p>
-                                    <div class="input-group mb-3">
+                                    <div class="input-group mb-4">
+                                        <div class="input-group-prepend"><span class="input-group-text">
+                                            <i class="fas fa-user"></i></span></div>
+                                        <input type="email" name="email" required #name="ngModel" [(ngModel)]="user.name" class="form-control" id="inputname" placeholder="User Name">
+                                    </div>
+                                    <div class="input-group mb-4">
                                         <div class="input-group-prepend"><span class="input-group-text">
                                             <i class="fas fa-user"></i></span></div>
                                         <input type="email" name="email" required #email="ngModel" [(ngModel)]="user.email" class="form-control" id="inputEmail3" placeholder="Email">

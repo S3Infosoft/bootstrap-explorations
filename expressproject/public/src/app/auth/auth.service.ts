@@ -18,9 +18,9 @@ export class AuthService {
   constructor(  private http :HttpClient , private router : Router , private _as: AppService ) { }
 
 
-  createUser( email: string , password : string , role: string ) {
+  createUser( name: string , email: string , password : string , role: string ) {
 
-   const  authData : AuthData = { email: email , password: password, role:role }
+   const  authData : AuthData = { name: name , email: email , password: password, role:role }
     this.http.post("/users/signup" , authData).subscribe( response => {
       console.log(response);
       
@@ -28,13 +28,21 @@ export class AuthService {
     
     }
 
+    updateUser( userid: string , name: string , email: string , password : string , role: string ) {
+        console.log("update");
+      const  authData : AuthData = { name: name , email: email , password: password, role:role }
+       this.http.put("/users/updateUser/" + userid , authData).subscribe( response => {
+         console.log(response);
+       })
+       }
+       
     getUserId(){
       const userId = localStorage.getItem('userId')
       return userId
     }
     
-    login( email: string , password : string ) {
-      const  authData :  AuthModel = { email: email , password: password }
+    login(  email: string , password : string ) {
+      const  authData :  AuthModel = {  email: email , password: password }
        this.http.post<{ token : string , userId : string , role:string}>("/users/login" , authData).subscribe( response => {
         const token = response.token
         this.token = token;
@@ -46,12 +54,14 @@ export class AuthService {
          localStorage.setItem('userId' , this.userId)
          localStorage.setItem( 'role', this.role)
          console.log(this.role)
-         if( this.role == "admin"){
+         if( this.role == "Admin"){
           this.router.navigate(['/home'])
          }
          else if ( this.role == "user"){
          this.router.navigate(['/posts'])
          }
+ else;
+   this.router.navigate(['/home'])
        })
        }
 
@@ -65,4 +75,11 @@ export class AuthService {
        localStorage.setItem( 'userId' , null)
         this.router.navigate(['/login'])
        } 
+
+       getData( ) {
+        return this.http.get ('/users/getUsers')
+        }
+
+       
+
 }
