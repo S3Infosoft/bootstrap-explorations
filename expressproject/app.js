@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const Post = require('../expressproject/model/post');
 const Notify = require('../expressproject/model/notify');
+const Read = require('../expressproject/model/read');
 const checkAuth = require('./middleware/check-auth')
 var app = express();
 
@@ -88,7 +89,29 @@ app.post("/api/notifyData", (req, res, next) => {
     })
 });
 
-app.get("/api/getData", (request, response) => {
+app.post("/api/readData", (req, res, next) => {
+    const post = new Read({
+        message: req.body,
+        // creator: req.userData.userId,
+        // creatorName: req.userData.email
+    });
+    console.log(req.body)
+    post.save();
+    res.status(201).json({
+        message: post,
+    })
+});
+
+app.get("/api/getReads", (request, response) => {
+        const postQuery = Read.find();
+        postQuery.then(documents => {
+            response.status(201).json({
+                message: documents,
+            })
+        });
+    }),
+
+    app.get("/api/getData", (request, response) => {
         const pageSize = +request.query.pagesize;
         const currentPage = +request.query.page;
         const postQuery = Post.find();
@@ -123,6 +146,15 @@ app.get("/api/getData", (request, response) => {
         })
 
     });
+
+app.delete("/api/deleteRead", (req, res, next) => {
+    Notify.deleteMany().then(result => {
+        if (result.n > 0) {
+            res.status(200).json({ message: 'post deleted' })
+        } else
+            res.status(401).json({ message: 'Un Authorised' })
+    })
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

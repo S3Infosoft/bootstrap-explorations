@@ -52,10 +52,10 @@
                                             <td>{{displayItem.role}}</td>
                                             <td>
                                                 <ul class="d-flex actions-list ">
-                                                    <li><a href="javascript:void(0); " class="icon-btn " (click)="onEdit(i) "><i
+                                                    <li><a href="javascript:void(0); " class="icon-btn " (click)="onEdit(displayItem._id) "><i
                               class="material-icons ">
                               edit </i></a></li>
-                                                    <li><a href="javascript:void(0); " class="icon-btn " (click)="onclickDelete(displayItem._id) "><i
+                                                    <li><a href="javascript:void(0); " data-target="#deleteModal" data-toggle="modal" class="icon-btn " (click)="onclickDelete(displayItem._id) "><i
                               class="material-icons ">
                               delete </i></a></li>
                                                 </ul>
@@ -75,15 +75,26 @@
                                                   <span>*</span>
                                                 </label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="Name" name="Name" [(ngModel)]="enteredValue.name" #name="ngModel" required="required">
+                                    <input type="text" class="form-control" placeholder="Name" name="name" [(ngModel)]="enteredValue.name" #name="ngModel" required="required">
+                                    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
+                                        <small *ngIf="name.errors.required">
+                                            Name is required.
+                                        </small>
+                                    </div>
                                 </div>
+
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-3 control-label"> Email
                                                   <span>*</span>
                                                 </label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="Email" name="Email" [(ngModel)]="enteredValue.email" #userName="ngModel" required="required">
+                                    <input type="text" class="form-control" placeholder="Email" name="email" [(ngModel)]="enteredValue.email" #email="ngModel" required="required">
+                                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+                                        <small *ngIf="email.errors.required">
+                                            Email is required.
+                                        </small>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -95,6 +106,11 @@
                                         <option value="Admin ">Admin</option>
                                         <option value="User ">User</option>
                                     </select>
+                                    <div *ngIf="role.invalid && (role.dirty || role.touched)" class="text-danger">
+                                        <small *ngIf="role.errors.required">
+                                            Role is required.
+                                        </small>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -102,7 +118,16 @@
                                     <span>*</span>
                                                 </label>
                                 <div class="col-sm-8">
-                                    <input type="password" class="fas fa-key" class="form-control" placeholder="password" name="Password" [(ngModel)]="enteredValue.password" #password="ngModel" required="required">
+                                    <input name="password" type="password" #password="ngModel" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" [(ngModel)]="enteredValue.password" autocomplete="off" class="form-control" required>
+                                    <div *ngIf="password.invalid && (password.dirty ||password.touched)" class="text-danger">
+
+                                        <small *ngIf="password.errors.required">
+                                            Password is required.
+                                        </small>
+                                        <small *ngIf="password.errors.pattern">
+                                            Must contain at least one number , one uppercase and lowercase letter, and at least 8 or more characters
+                                        </small>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -110,8 +135,8 @@
                                     <span>*</span>
                                                 </label>
                                 <div class="col-sm-8">
-                                    <input type="password" class="form-control" placeholder="Confirm Password" name="itemDesc" [(ngModel)]="enteredValue.password1" #reTypePassword="ngModel" required>
-                                    <div *ngIf="showWrong"><small class="text-danger">*Passwords not Matching</small></div>
+                                    <input type="password" class="form-control" placeholder="Confirm Password" name="password1" [(ngModel)]="enteredValue.password1" (input)="passwordsMatch()" autocomplete="off" #Password1="ngModel" required>
+                                    <div *ngIf="showError"><small class="text-danger">*Password not Matching</small></div>
                                 </div>
                             </div>
                             <div class="form-group row ">
@@ -121,48 +146,6 @@
                                 </div>
                                 <div class="col-sm-3 ">
                                     <button type="submit " class="btn btn-primary ml-2 " [disabled]="!user.form.valid" (click)="onSave() ">Save</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-md-4 p-3 " *ngIf="showEdit">
-                    <div>
-                        <form class="form-horizontal " #user="ngForm">
-                            <div class="form-group row">
-                                <label class="col-sm-3 control-label">User Name
-                                                  <span>*</span>
-                                                </label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="Name" name="userName" [(ngModel)]="enteredValue.name" #name="ngModel" required="required">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-3 control-label"> Email
-                                                  <span>*</span>
-                                                </label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="Email" name="userName" [(ngModel)]="enteredValue.email" #userName="ngModel" required="required">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-3 control-label">Role
-                                    <span>*</span>
-                                                </label>
-                                <div class="col-sm-8">
-                                    <select type="text" class="form-control" placeholder="role" name="role" [(ngModel)]="enteredValue.role" #role="ngModel" required="required">
-                                        <option value="Admin ">Admin</option>
-                                        <option value="User ">User</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row ">
-                                <div class="col-sm-3 ">
-                                    <button type="button " class="btn btn-secondary ml-2 " (click)="onCancel() ">Cancel</button>
-
-                                </div>
-                                <div class="col-sm-3 ">
-                                    <button type="submit " class="btn btn-primary ml-2 " [disabled]="!user.form.valid" (click)="onSave(displayItem._id) ">Save</button>
                                 </div>
                             </div>
                         </form>
@@ -181,6 +164,6 @@
     </div>
     <div class="modal-footer p-0 border-0">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="onDelete()">Delete</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="ondelete()">Delete</button>
     </div>
 </div>

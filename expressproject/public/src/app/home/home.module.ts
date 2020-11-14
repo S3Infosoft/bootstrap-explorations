@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule , CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { HomeRoutingModule , routingComponents} from './home-routing.module'
 import { FormsModule } from '@angular/forms';
 import { CommonModule} from '@angular/common';
@@ -12,6 +12,7 @@ import { CommonModule} from '@angular/common';
     FormsModule,
     CommonModule,
     
-  ]
+  ],
+ 
 })
 export class HomeModule { }

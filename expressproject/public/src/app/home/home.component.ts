@@ -17,7 +17,8 @@ export class HomeComponent implements OnInit {
   length : any = [ ]
   postperpage = 2;
   number : any =[];
-  notificationsBar = []
+  notificationsBar = [];
+  notificationsBarRev = [];
   ngOnInit(): void {
     this.getApiData();
   }
@@ -41,13 +42,14 @@ export class HomeComponent implements OnInit {
     subscribe((response : any) =>
     {
       this.notifications= response.message;
-      this.notificationsBar = this.notifications.slice(this.notifications.length - 5 , this.notifications.length)
-      console.log(this.notificationsBar)
       this.number = [{ n : this.notifications.length}]
      if( this.notifications.length > 5 ){
-       this.length = [{ n : "5+"}]
+      this. notificationsBarRev = this.notifications.slice(this.notifications.length - 5 , this.notifications.length)
+      this.notificationsBar = this.notificationsBarRev.reverse()
+      this.length = [{ n : "5+"}]
      } else 
      this.length =  this.number
+     this.notificationsBar = this.notifications.reverse()
       console.log( 'response from API',response.message)
       this.spinner.requestEnded();
     }), (error) => {

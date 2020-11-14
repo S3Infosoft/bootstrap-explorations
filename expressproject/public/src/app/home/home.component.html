@@ -114,11 +114,12 @@
                             <tr *ngFor="let n of length ;let i=index "><strong>You have {{n.n}} notifications</strong>
                             </tr>
                         </div>
-
                         <tr *ngFor="let displayItem of notificationsBar;let i=index ">
                             <a class="dropdown-item" href="#">
                                 <i class="material-icons">chevron_right</i> {{displayItem.creatorName}} {{ displayItem.message}}</a>
                         </tr>
+                        <a class="link" href="/home/notifications">
+                             See All</a>
                         <div class="dropdown-header bg-light"><strong>Server</strong></div>
                         <a class="dropdown-item d-block" href="#">
                             <div class="text-uppercase mb-1"><small><b>CPU Usage</b></small></div><span class="progress progress-xs">
@@ -212,7 +213,7 @@
 
                 <ol class="breadcrumb border-0 m-0 px-0 px-md-3">
                     <li class="breadcrumb-item">Home</li>
-                    <li class="breadcrumb-item"><a href="#">Admin</a></li>
+                    <li class="breadcrumb-item"><a href="/home">Admin</a></li>
                     <li class="breadcrumb-item active">Dashboard</li>
 
                 </ol>

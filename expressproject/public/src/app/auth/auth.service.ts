@@ -54,10 +54,10 @@ export class AuthService {
          localStorage.setItem('userId' , this.userId)
          localStorage.setItem( 'role', this.role)
          console.log(this.role)
-         if( this.role == "Admin"){
+         if( this.role == "Admin "){
           this.router.navigate(['/home'])
          }
-         else if ( this.role == "user"){
+         else if ( this.role == "User "){
          this.router.navigate(['/posts'])
          }
  else;

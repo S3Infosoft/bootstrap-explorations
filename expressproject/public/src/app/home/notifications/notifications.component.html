@@ -1,0 +1,24 @@
+<div class="dropdown-header bg-dark">
+    <tr *ngFor="let n of length ;let i=index "><strong>You have {{n.n}} new  notifications</strong>
+    </tr>
+    <div class="pull-right ">
+        <button class="btn btn-secondary" (click)="markAllRead()"> Mark All Read  </button> </div>
+</div>
+<tr *ngFor="let displayItem of notifications;let i=index">
+    <div class="dropdown-item">
+        <a class="active" on-mouseover='over()' href="#">
+            <i class="material-icons">chevron_right</i> {{displayItem.creatorName}} {{ displayItem.message}}</a>
+    </div>
+</tr>
+
+
+<div class="dropdown-header bg-dark">
+    <tr *ngFor="let n of length ;let i=index "><strong>Read notifications</strong>
+    </tr>
+</div>
+<tr *ngFor="let displayItem of Readnotifications;let i=index">
+    <div class="dropdown-item">
+        <a class="active">
+            <i class="material-icons">chevron_right</i> {{displayItem.creatorName}} {{ displayItem.message}}</a>
+    </div>
+</tr>

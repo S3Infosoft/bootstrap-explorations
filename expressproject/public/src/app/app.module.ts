@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS } from "@angular/common/http"
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule ,  ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
@@ -37,6 +37,7 @@ import { FlashmessageComponent } from './shared/flashmessage/flashmessage.compon
     MatPaginatorModule,
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
+    ReactiveFormsModule
     
   ],
 
