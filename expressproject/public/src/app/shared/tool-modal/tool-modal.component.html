@@ -1,0 +1,16 @@
+<div class="modal fade" id="{{_id}}" #myModal tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false"
+    aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" [ngClass]="modalDialogClass" role="document"
+        [ngStyle]="modalDialogStyle">
+        <div class="modal-content p-3" [ngStyle]="modelContentStyle">
+            <div class="modal-header  p-0 border-0">
+                <h3 class="modal-title" id="exampleModalLabel">{{_header}}</h3>
+                <button type="button" class="close cp" aria-label="Close" (click)="onCloseModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <hr class="my-2">
+            <ng-content></ng-content>
+        </div>
+    </div>
+</div>

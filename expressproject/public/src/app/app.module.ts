@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS } from "@angular/common/http"
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule ,  ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
@@ -14,8 +14,8 @@ import { MatProgressSpinnerModule} from "@angular/material/progress-spinner"
 import { AuthGuard } from "./auth.guard";
 import { PagenotfoundComponent } from './auth/pagenotfound/pagenotfound.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
-
-
+import { FlashmessageComponent } from './shared/flashmessage/flashmessage.component';
+// import { ToolDeleteModalComponent } from './shared/tool-modal/tool-modal.component'
 
 @NgModule({
   declarations: [
@@ -24,8 +24,11 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
     SignupComponent,
     PagenotfoundComponent,
     SpinnerComponent,
-  
+    FlashmessageComponent,
+    // ToolDeleteModalComponent
   ],
+
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -33,7 +36,9 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
     HttpClientModule,
     MatPaginatorModule,
     BrowserAnimationsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    ReactiveFormsModule
+    
   ],
 
   providers: [ AuthGuard ,{ provide : HTTP_INTERCEPTORS , useClass : AuthInterceptor , multi : true}],

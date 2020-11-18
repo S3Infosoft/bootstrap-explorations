@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const postSchema = mongoose.Schema({
 
-    message: { type: String, required: true },
+    message: { type: Array, required: true },
 
     // creator: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
 
@@ -10,4 +10,4 @@ const postSchema = mongoose.Schema({
 
 });
 
-module.exports = mongoose.model('notify', postSchema);
+module.exports = mongoose.model('read', postSchema);

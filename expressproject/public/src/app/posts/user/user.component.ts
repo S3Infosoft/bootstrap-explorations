@@ -8,6 +8,11 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class UserComponent implements OnInit {
 
+  displayItems  = [];
+  notifications = [];
+  length : any = [ ]
+  postperpage = 2;
+  
   constructor( private auth :AuthService) { }
 
   ngOnInit(): void {

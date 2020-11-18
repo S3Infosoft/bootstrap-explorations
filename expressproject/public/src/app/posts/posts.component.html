@@ -1,47 +1,45 @@
 <div class="content-main radius-2 p-3">
     <div class="row ">
-        <div class="col-md-12" style="background-color:cornsilk ">
+        <div class="col-md-12">
             <div class="table-box table-fullwidth pt-3 " style="flex-basis:100% ">
-                <div class="col-md-7 p-3">
-                    <div class=" float-right">
-                        <form class="form-horizontal " #user="ngForm">
-                            <div class="form-group row">
-                                <label class="col-sm-4 control-label">User Name
+                <div class="col-md-5 p-3">
+                    <form class="form-horizontal " #user="ngForm">
+                        <div class="form-group row">
+                            <label class="col-sm-4 control-label">User Name
                                           <span>*</span>
                                         </label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="User Name" name="userName" [(ngModel)]="enteredValue.userName" #userName="ngModel" required="required">
-                                </div>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="User Name" name="userName" [(ngModel)]="enteredValue.userName" #userName="ngModel" required="required">
                             </div>
-                            <div class="form-group row">
-                                <label class="col-sm-4 control-label"> Country
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 control-label"> Country
                                           <span>*</span>
                                         </label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="Contry" name="userCountry" [(ngModel)]="enteredValue.userCountry" #userCountry="ngModel" required="required">
-                                </div>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="Contry" name="userCountry" [(ngModel)]="enteredValue.userCountry" #userCountry="ngModel" required="required">
                             </div>
-                            <div class="form-group row">
-                                <label class="col-sm-4 control-label">Mode of Pay
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 control-label">Mode of Pay
                                         </label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="Mode of Pay" name="userModeOfPay" [(ngModel)]="enteredValue.userModeOfPay" #userModeOfPay="ngModel">
-                                </div>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="Mode of Pay" name="userModeOfPay" [(ngModel)]="enteredValue.userModeOfPay" #userModeOfPay="ngModel">
                             </div>
-                            <div class="form-group row ">
-                                <div class="col-sm-3 ">
-                                    <button type="button " class="btn btn-secondary ml-2 " (click)="onCancel() ">Cancel</button>
+                        </div>
+                        <div class="form-group row ">
+                            <div class="col-sm-3 ">
+                                <button type="button " class="btn btn-secondary ml-2 " (click)="onCancel() ">Cancel</button>
 
-                                </div>
-                                <div class="col-sm-3 ">
-
-                                    <button type="submit " class="btn btn-primary ml-2 " [disabled]="!user.form.valid" (click)="onSave() ">Save</button>
-                                </div>
                             </div>
-                        </form>
-                    </div>
+                            <div class="col-sm-3 ">
+
+                                <button type="submit " class="btn btn-primary ml-2 " [disabled]="!user.form.valid" (click)="onSave() ">Save</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="float-right">
+                <div class="col-sm-8">
                     <div class="table-responsive ">
                         <table class="table table-hover table-striped table-bordered table-sm ">
                             <thead class="thead-dark ">
@@ -49,7 +47,7 @@
                                     <th>Name</th>
                                     <th>Country</th>
                                     <th>Mode Of Pay</th>
-                                    <th></th>
+                                    <th> Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -57,13 +55,19 @@
                                     <td>{{displayItem.userName}}</td>
                                     <td>{{displayItem.userCountry}}</td>
                                     <td>{{displayItem.userModeOfPay}}</td>
-                                    <td> <button type="button " class="btn btn-dark sl-1" (click)="ondelete(displayItem._id)"> 
-                                            Delete </button></td>
+                                    <td>
+                                        <li>
+                                            <a href="javascript:void(0)">
+                                                <i class="material-icons" (click)="editPost(i)">&#xE150;</i>
+                                            </a>
+                                            <a href="javascript:void(0)">
+                                                <i class="material-icons" (click)="deletePost(displayItem._id)">&#xE872;</i>
+                                            </a>
+                                        </li>
+                                    </td>
                                 </tr>
                             </tbody>
-
                         </table>
-                        <mat-paginator [length]="totalPosts" [pageSize]="postperpage" [pageSizeOptions]="pageSizeOptions" (page)="onChanepage($event)"></mat-paginator>
                     </div>
                 </div>
             </div>

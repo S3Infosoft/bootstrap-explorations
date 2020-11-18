@@ -16,5 +16,10 @@ export class AppService {
   getNotify(){
     return this.http.get ('/api/getNotify')
   }
+
+  getRead(){
+    return this.http.get ('/api/getReads')
+  }
+
 }
 

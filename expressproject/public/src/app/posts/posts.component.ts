@@ -26,7 +26,7 @@ export class PostsComponent implements OnInit {
 
 
   onSave(){
-    this.postArray.push(this.enteredValue)
+    // this.postArray.push(this.enteredValue)
     this.postData();
     this.getApiData();
     this.enteredValue={}
@@ -70,7 +70,7 @@ export class PostsComponent implements OnInit {
     }
   }
 
-  ondelete(postid : string){
+  deletePost(postid : string){
     this.http.delete('/api/deleteData/' + postid).subscribe((response) =>
     {
       console.log( 'response from API' ,response)
@@ -82,17 +82,21 @@ export class PostsComponent implements OnInit {
     this.getApiData();
   }
 
-  onChanepage( pageData : PageEvent){
-
-  }
 
   onCancel(){
-    this.enteredValue={}
+    this.enteredValue = {}
   }
 
 
   onlogout(){
 this.auth.logout()
   }
+
+
+  editPost(i){
+    console.log(this.postArray[i])
+    this.enteredValue = JSON.parse(JSON.stringify(this.postArray[i]))
+  }
+
 }
 

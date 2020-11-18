@@ -1,35 +1,142 @@
+<!-- <div class="container">
+    <form action="/action_page.php">
+        <label for="usrname">Username</label>
+        <input type="text" id="usrname" name="usrname" required>
+
+        <label for="psw">Password</label>
+        <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+<div id="message">
+    <h3>Password must contain the following:</h3>
+    <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+    <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+    <p id="number" class="invalid">A <b>number</b></p>
+    <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+</div> -->
+
+
 <div class="contentMain container-fluid pt-3">
     <div class="fullWidth">
         <header class="page-header d-flex px-2">
-            <h4 class="page-Title fw-600">User Creation</h4>
+            <h4 class="page-Title fw-600">Create User</h4>
         </header>
         <div class="content-main radius-2 p-3">
             <div class="row ">
-                <div class="col-md-4 p-3">
+                <div class="col-md-8 ">
+                    <div class="table-box table-fullwidth pt-3 " style="flex-basis:100% ">
+                        <div class="tableOuter">
+                            <div class="col-md-12">
+                                <a href="javascript:void(0)" class="pull-right addNewItem">
+                                    <i class="material-icons" (click)="addNewItem()">&#xE148;</i>
+                                    <span>Add New</span>
+                                </a>
+                            </div>
+                            <div class="table-responsive ">
+                                <table class="table table-hover table-striped table-bordered table-sm ">
+                                    <thead class="thead-dark ">
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Email Id</th>
+                                            <th>Role</th>
+                                            <th>Edit/Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let displayItem of displayUsers;let i=index;">
+                                            <td>{{displayItem.name}}</td>
+                                            <td>{{displayItem.email}}</td>
+                                            <td>{{displayItem.role}}</td>
+                                            <td>
+                                                <ul class="d-flex actions-list ">
+                                                    <li><a href="javascript:void(0); " class="icon-btn " (click)="onEdit(displayItem._id) "><i
+                              class="material-icons ">
+                              edit </i></a></li>
+                                                    <li><a href="javascript:void(0); " data-target="#deleteModal" data-toggle="modal" class="icon-btn " (click)="onclickDelete(displayItem._id) "><i
+                              class="material-icons ">
+                              delete </i></a></li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 p-3 " *ngIf="showView">
                     <div>
                         <form class="form-horizontal " #user="ngForm">
                             <div class="form-group row">
-                                <label class="col-sm-4 control-label">User Name
-                                  <span>*</span>
-                                </label>
+                                <label class="col-sm-3 control-label">User Name
+                                                  <span>*</span>
+                                                </label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="User Name" name="userName" [(ngModel)]="enteredValue.email" #userName="ngModel" required="required">
+                                    <input type="text" class="form-control" placeholder="Name" name="name" [(ngModel)]="enteredValue.name" #name="ngModel" required="required">
+                                    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
+                                        <small *ngIf="name.errors.required">
+                                            Name is required.
+                                        </small>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 control-label"> Email
+                                                  <span>*</span>
+                                                </label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="Email" name="email" [(ngModel)]="enteredValue.email" #email="ngModel" required="required">
+                                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+                                        <small *ngIf="email.errors.required">
+                                            Email is required.
+                                        </small>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-4 control-label"> create Password
-                                  <span>*</span>
-                                </label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="password" name="Password" [(ngModel)]="enteredValue.password" #password="ngModel" required="required">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-4 control-label"> Role
+                                <label class="col-sm-3 control-label">Role
                                     <span>*</span>
-                                </label>
+                                                </label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="role" name="role" [(ngModel)]="enteredValue.role" #role="ngModel" required="required">
+                                    <select type="text" class="form-control" placeholder="role" name="role" [(ngModel)]="enteredValue.role" #role="ngModel" required="required">
+                                        <option value="Admin ">Admin</option>
+                                        <option value="User ">User</option>
+                                    </select>
+                                    <div *ngIf="role.invalid && (role.dirty || role.touched)" class="text-danger">
+                                        <small *ngIf="role.errors.required">
+                                            Role is required.
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 control-label">Password
+                                    <span>*</span>
+                                                </label>
+                                <div class="col-sm-8">
+                                    <input name="password" type="password" #password="ngModel" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" [(ngModel)]="enteredValue.password" autocomplete="off" class="form-control" required>
+                                    <div *ngIf="password.invalid && (password.dirty ||password.touched)" class="text-danger">
+
+                                        <small *ngIf="password.errors.required">
+                                            Password is required.
+                                        </small>
+                                        <small *ngIf="password.errors.pattern">
+                                            Must contain at least one number , one uppercase and lowercase letter, and at least 8 or more characters
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 control-label">Confirm Password
+                                    <span>*</span>
+                                                </label>
+                                <div class="col-sm-8">
+                                    <input type="password" class="form-control" placeholder="Confirm Password" name="password1" [(ngModel)]="enteredValue.password1" (input)="passwordsMatch()" autocomplete="off" #Password1="ngModel" required>
+                                    <div *ngIf="showError"><small class="text-danger">*Password not Matching</small></div>
                                 </div>
                             </div>
                             <div class="form-group row ">
@@ -38,48 +145,25 @@
 
                                 </div>
                                 <div class="col-sm-3 ">
-
                                     <button type="submit " class="btn btn-primary ml-2 " [disabled]="!user.form.valid" (click)="onSave() ">Save</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
-                <div class="col-md-6 " style="background-color:cornsilk ">
-                    <div class="table-box table-fullwidth pt-3 " style="flex-basis:100% ">
-                        <div class="table-responsive ">
-                            <table class="table table-hover table-striped table-bordered table-sm ">
-                                <thead class="thead-dark ">
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Role</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let displayItem of userDetails ; let i=index;  ">
-                                        <td>{{displayItem.email}}</td>
-                                        <td>{{displayItem.role}}</td>
-                                        <td> <button type="button " class="btn btn-primary sl-1" (click)="ondelete(userDetails._id)"> 
-                                            Delete </button></td>
-                                    </tr>
-                                </tbody>
-
-                            </table>
-
-                        </div>
-                    </div>
-                </div>
             </div>
-
         </div>
     </div>
-    <button type="button " class="btn btn-primary sl-1" (click)="onclick()">Back</button>
 </div>
 
-
-
-<i class="far fa-clock"></i>
-<script>
-    scr = "https://kit.fontawesome.com/yourcode.js"
-</script>
+<div *ngIf="showModal" #modalRef2 [id]="'deleteModal'" header="Confirmation">
+    <div class="modal-body p-0">
+        <div class="p-4">
+            Are sure you want to Delete ..?
+        </div>
+    </div>
+    <div class="modal-footer p-0 border-0">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="ondelete()">Delete</button>
+    </div>
+</div>

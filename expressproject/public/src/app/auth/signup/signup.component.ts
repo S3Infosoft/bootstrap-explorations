@@ -17,7 +17,7 @@ export class SignupComponent implements OnInit {
   constructor( private auth: AuthService ,  private r: Router) { }
   SignUp() {
       console.log(this.user);
-      this.auth.createUser(this.user.email , this.user.password , this.role.role) ;
+      this.auth.createUser( this.user.name , this.user.email , this.user.password , this.role.role) ;
       this.r.navigate(['/login'])
     }
 
